@@ -9,13 +9,19 @@
             <li><a class="dropdown-button cyan-text" href="#!" data-activates="dropdown3">Accessories<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
 
-        <ul class="right hide-on-med-and-down">
-            <li><a class="cyan-text">Already have account ? </a></li>
-            <li>
-            <li><a class="modal-trigger cyan grey-text text-darken-4" href="#modal1"><i class="material-icons grey-text text-darken-4 left">account_circle</i>Signin Here</a></li>
-            </li>
-        </ul>
+        @if(Sentinel::check())
+            <ul class="right hide-on-med-and-down">
+                <li><a class="dropdown-button cyan-text" href="#!" data-activates="dropdown4">{{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}<i class="material-icons right">account_circle</i></a></li>
 
+            </ul>
+        @else
+            <ul class="right hide-on-med-and-down">
+                <li><a class="cyan-text">Already have account ? </a></li>
+                <li>
+                <li><a class="modal-trigger cyan grey-text text-darken-4" href="#modal1"><i class="material-icons grey-text text-darken-4 left">account_circle</i>Signin Here</a></li>
+                </li>
+            </ul>
+        @endif
 
         <ul id="nav-mobile" class="side-nav">
             <li><a href="#">Navbar Link</a></li>
@@ -57,12 +63,25 @@
 </ul>
 {{--End Accessories Droprown--}}
 
+{{--User Dropdown--}}
+<ul id="dropdown4" class="dropdown-content">
+    <li><a href="{{ route('signout') }}">Profile</a></li>
+    <li class="divider"></li>
+    <li><a href="{{ route('signout') }}">Signout</a></li>
+</ul>
+{{--End User Droprown--}}
+
+
+
+
 {{--Modal Signin--}}
-<div id="modal1" class="modal col l5 s5  modal-fixed-footer">
+<div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content col l5 s5 ">
 
         <a href="#" class="modal-action modal-close material-icons right black-text">close</a>
         <h4 class="black-text">Signin</h4>
+
+        {!! Form::open(['route' => 'postSignin', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
         <div class="row">
             <form class="col s12">
@@ -85,17 +104,21 @@
 
                 <div class="row">
                     <div class="input-field col s12">
-                        <a class="waves-effect waves-light grey darken-4 cyan-text btn"><i class="material-icons cyan-text left">check</i>button</a>
+                        <button type='submit' name='submit' class='col s4 btn btn-large waves-effect cyan darken-2 left'><i class="material-icons left">done</i>Signin</button>
                     </div>
                 </div>
 
             </form>
         </div>
 
+        {!! Form::close() !!}
+
     </div>
 
     <div class="modal-footer black-text">
-        {{--<span  class="left-align">Don't Have Account ? </span> <span class="black-text">{!! link_to(route('signup'), 'Sign Up') !!}</span>--}}
+        <div class="container">
+            <span  class="left-align">Don't Have Account ? </span> <span class="black-text">{!! link_to(route('signup'), 'Create Here') !!}</span>
+        </div>
     </div>
 
 </div>
