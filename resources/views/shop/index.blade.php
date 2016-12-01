@@ -8,7 +8,7 @@
             @foreach($products as $product)
                 <div class="col s12 m4">
 
-                    <div class="card">
+                    <div class="card large">
 
                         <div class="card-image waves-effect waves-block waves-light">
                             <img class="activator" src="/images/{{ $product->title .'.'. $product->image_extension . '?' . 'time='. time() }}">
