@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', 'ShopsController@index')->name('shopIndex');
+
+
+//Product Route//
+Route::get('productList', 'ProductsController@index')->name('productList');
+Route::get('productCreate', 'ProductsController@create')->name('productCreate');
+Route::post('productPost', 'ProductsController@store')->name('productPost');
+Route::resource('products', 'ProductsController');
+//End Product Route//
