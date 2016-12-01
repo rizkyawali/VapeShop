@@ -2,36 +2,42 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="section">
+    <div class="section">
+        <div class="row">
 
-            <div class="row">
+            @foreach($products as $product)
                 <div class="col s12 m4">
-                    <div class="card small">
+
+                    <div class="card">
+
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="img" alt="">
+                            <img class="activator" src="/images/{{ $product->title .'.'. $product->image_extension . '?' . 'time='. time() }}">
                         </div>
 
-                        <div class="card-content small">
-                            <span class="card-title activator cyan-text text-darken-2">Title<i class="material-icons cyan-text text-darken-2 right">more_vert</i></span>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ $product->title }}</span>
+                            <p><a href="#">Review This Product</a></p>
                         </div>
 
-                        <div class="card-reveal grey lighten-2">
-                            <span class="card-title cyan-text text-darken-2">Title<i class="material-icons cyan-text text-darken-2 right">close</i></span>
-                            <p>Lorem ipsum dolor</p>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{ $product->title }}<i class="material-icons right">close</i></span>
+                            <hr>
+                            <p><small>{{ $product->description }}</small></p>
                         </div>
 
-                        <div class="card-action grey">
-                            <div class="chip teal-text">
-                                Rp.
+                        <div class="card-content">
+                            <div class="card-action">
+                                <div class="chip">
+                                    Rp. {{ $product->price }}
+                                </div>
+                                <a class="btn-floating btn-large waves-effect waves-light grey darken-3 right"><i class="material-icons cyan-text">add_shopping_cart</i></a>
                             </div>
-
-                            <a class="btn-floating btn-large waves-effect waves-light grey darken-3 right"><i class="material-icons cyan-text">add_shopping_cart</i></a>
                         </div>
 
                     </div>
+
                 </div>
-            </div>
+            @endforeach
 
         </div>
     </div>

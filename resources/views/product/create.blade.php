@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="input-field col s5">
                         <i class="material-icons prefix">label</i>
-                        {!! Form::text('title', null, ['class' => 'validate']) !!}
+                        {!! Form::text('title', null, ['class' => 'validate ', 'length' => '30']) !!}
                         <label for="icon_prefix1">Title</label>
                     </div>
                 </div>
